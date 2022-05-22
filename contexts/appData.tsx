@@ -34,42 +34,46 @@ export function AppDataProvider({ children }): JSX.Element {
   const [searchInput, setSearchInput] =
     useState<TSearchInput>(initialSearchInput);
   const router = useRouter();
-  const { isLoading, error, data } = useQuery<TSearchEngine[], Error>(
-    QUERIES.ENGINES,
-    () => fetch(ENDPOINTS.ENGINES).then((res) => res.json()),
-    {
-      refetchOnWindowFocus: false,
-      onSuccess: (result) => {
-        const updateSearchInput = () => {
-          const locationQuery = new URLSearchParams(window.location.search);
-          const currentInput: TSearchInput = {
-            engine:
-              locationQuery.get("engine") ||
-              searchInput.engine ||
-              result[0]?.id ||
-              initialSearchInput.engine,
-            query: locationQuery.get("query") || initialSearchInput.query,
-            page:
-              parseInt(locationQuery.get("page"), 10) ||
-              initialSearchInput.page,
-          };
+  const data = [{
+    id: "001026332474729733297:elhdjihv5ea",
+    name: "罗网",
+  }]
+  // const { isLoading, error, data } = useQuery<TSearchEngine[], Error>(
+  //   QUERIES.ENGINES,
+  //   () => fetch(ENDPOINTS.ENGINES).then((res) => res.json()),
+  //   {
+  //     refetchOnWindowFocus: false,
+  //     onSuccess: (result) => {
+  //       const updateSearchInput = () => {
+  //         const locationQuery = new URLSearchParams(window.location.search);
+  //         const currentInput: TSearchInput = {
+  //           engine:
+  //             locationQuery.get("engine") ||
+  //             searchInput.engine ||
+  //             result[0]?.id ||
+  //             initialSearchInput.engine,
+  //           query: locationQuery.get("query") || initialSearchInput.query,
+  //           page:
+  //             parseInt(locationQuery.get("page"), 10) ||
+  //             initialSearchInput.page,
+  //         };
 
-          setSearchInput(currentInput);
-        };
+  //         setSearchInput(currentInput);
+  //       };
 
-        // create a route handler to update search input state on back/forward click
-        router.events.on("routeChangeComplete", updateSearchInput);
+  //       // create a route handler to update search input state on back/forward click
+  //       router.events.on("routeChangeComplete", updateSearchInput);
 
-        updateSearchInput();
-      },
-    }
-  );
+  //       updateSearchInput();
+  //     },
+  //   }
+  // );
 
-  if (isLoading) return <Spinner />;
+  // if (isLoading) return <Spinner />;
 
-  if (error) {
-    return <Alert severity="error">{error.message}</Alert>;
-  }
+  // if (error) {
+  //   return <Alert severity="error">{error.message}</Alert>;
+  // }
 
   if (!data.length) {
     return (

@@ -30,7 +30,7 @@ export default function Home() {
         <Typography>
           Visit{" "}
           <a
-            href="https://programmablesearchengine.google.com/smart_sign_in"
+            href="https://programmablesearchengine.google.com/controlpanel/all"
             target="_blank"
           >
             Google Programmable Search Engine

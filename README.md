@@ -2,6 +2,7 @@
 
 A self-hosted, customizable and ad-free Google Search experience.
 
+-[Custom Search JSON API  |  Programmable Search Engine  |  Google Developers](https://developers.google.com/custom-search/v1/overview)
 ## What does it do?
 
 Giggle lets you run Google searches against allow- and block-lists in an easy way. You create lists of sites to include or exclude in Google's [Programmable Search Engine service](https://developers.google.com/custom-search) and Giggle will pick them up for use.

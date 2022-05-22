@@ -19,9 +19,10 @@ function getEngines() {
       const page = await browser.newPage();
 
       try {
-        await page.setDefaultNavigationTimeout(3000);
+        await page.setDefaultNavigationTimeout(30000);
         await page.goto(
-          "https://programmablesearchengine.google.com/smart_sign_in"
+          // "https://programmablesearchengine.google.com/smart_sign_in"
+          "https://programmablesearchengine.google.com/controlpanel/all"
         );
 
         // login if necessary
@@ -32,12 +33,12 @@ function getEngines() {
           // NOTE: the timeout waits here aren't ideal but login will fail
           // sometimes without them because of google's form transitions,
           // especially with slow internet.
-          await page.waitForTimeout(500);
+          await page.waitForTimeout(30000);
           await page.click(usernameInputSelector);
           await page.keyboard.type(config.googleUsername);
           await page.keyboard.press("Enter");
           await page.waitForNavigation();
-          await page.waitForTimeout(500);
+          await page.waitForTimeout(30000);
           await page.click(passwordInputSelector);
           await page.keyboard.type(config.googlePassword);
           await page.keyboard.press("Enter");
@@ -79,6 +80,8 @@ export default async function handler(
         const result = await getEngines();
         res.status(200).send(result);
       } catch (error) {
+        console.log('error', error);
+        
         res.status(500).send({ error });
       }
       break;
