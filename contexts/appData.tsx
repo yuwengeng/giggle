@@ -26,7 +26,7 @@ const data = [{
 const AppDataContext = createContext<TAppDataContext>({
   engines: data,
   searchInput: {
-    engine: '001026332474729733297:elhdjihv5ea',
+    engine: null,
     page: null,
     query: null,
   },

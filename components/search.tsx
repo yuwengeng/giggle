@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Router from "next/router";
 import { Button, FormGroup, Menu, MenuItem, TextField } from "@mui/material";
 import { visuallyHidden } from "@mui/utils";
@@ -20,6 +20,7 @@ export default function Search() {
   const { engines, searchInput, setSearchInput } = useAppData();
   const enginesOpen = !!enginesEl;
   const selectedEngine = engines.find((e) => e.id === searchInput.engine);
+
   const { refetch } = useResults();
 
   const handleEnginesClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -57,6 +58,11 @@ export default function Search() {
     });
   };
 
+  useEffect(() => {
+    handleChange({
+      target: { name: "engine", value:'001026332474729733297:elhdjihv5ea' },
+    } as React.ChangeEvent<HTMLInputElement>)
+  }, [])
   return (
     <div css={{ width: "100%", maxWidth: "35rem" }}>
       <form
@@ -129,7 +135,9 @@ export default function Search() {
             </MenuItem>
           ))}
         </Menu>
-        <Button data-testid="submit-button" sx={visuallyHidden} type="submit">
+        <Button data-testid="submit-button" 
+        sx={visuallyHidden}
+         type="submit">
           Search
         </Button>
       </form>
