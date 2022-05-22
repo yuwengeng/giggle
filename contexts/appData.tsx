@@ -9,10 +9,24 @@ import { ENDPOINTS } from "../lib/endpoints";
 import { TSearchEngine, TAppDataContext, TSearchInput } from "../types/common";
 import Spinner from "../components/spinner";
 
+const data = [{
+  id: "001026332474729733297:elhdjihv5ea",
+  name: "罗网",
+},{
+  id: "001026332474729733297:gst2zqs78gj",
+  name: "技术社区",
+},{
+  id: "001026332474729733297:3t2scsclace",
+  name: "Sites云盘",
+},{
+  id: "001026332474729733297:u_uwiuzserc",
+  name: "eBooks",
+},]
+
 const AppDataContext = createContext<TAppDataContext>({
-  engines: [],
+  engines: data,
   searchInput: {
-    engine: null,
+    engine: '001026332474729733297:elhdjihv5ea',
     page: null,
     query: null,
   },
@@ -34,10 +48,7 @@ export function AppDataProvider({ children }): JSX.Element {
   const [searchInput, setSearchInput] =
     useState<TSearchInput>(initialSearchInput);
   const router = useRouter();
-  const data = [{
-    id: "001026332474729733297:elhdjihv5ea",
-    name: "罗网",
-  }]
+
   // const { isLoading, error, data } = useQuery<TSearchEngine[], Error>(
   //   QUERIES.ENGINES,
   //   () => fetch(ENDPOINTS.ENGINES).then((res) => res.json()),

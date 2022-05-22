@@ -26,10 +26,12 @@ export default async function handler(
     q: query,
     start: String(page * PAGE_SIZE - PAGE_SIZE + 1),
   };
-
+  
   // REAL USAGE ---------------------------------------------------------------
   const searchQuery = await fetch(
-    `${ENDPOINTS.GOOGLE_SEARCH}?${new URLSearchParams(searchParams)}`
+    // `${ENDPOINTS.GOOGLE_SEARCH}?${new URLSearchParams(searchParams)}`
+    `${ENDPOINTS.PROXY_RES}?${new URLSearchParams(searchParams)}`
+
   );
   const json = await searchQuery.json();
   // --------------------------------------------------------------------------
